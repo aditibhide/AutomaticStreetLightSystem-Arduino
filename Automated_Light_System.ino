@@ -5,9 +5,6 @@ int threshold=45;
 
 SoftwareSerial esp8266(3,4);
 
-#define SSID "Bhide"
-#define PASS "Shriparshuram1008"
-
 String sendAT(String command, const int timeout)
 {
   String response = "";
@@ -83,7 +80,7 @@ void updateTS(String S,String L,String T)
   sendAT("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n", 1000);    
   delay(2000);
   String cmdlen;
-  String cmd="GET /update?key=R5YK1PYDDJYMU1T4&field1="+S+"&field2="+L+"&field3="+T+"\r\n"; 
+  String cmd="GET /update?key=&field1="+S+"&field2="+L+"&field3="+T+"\r\n"; 
   cmdlen = cmd.length();
   sendAT("AT+CIPSEND="+cmdlen+"\r\n", 2000);
   esp8266.print(cmd);
